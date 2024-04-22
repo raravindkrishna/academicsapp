@@ -11,9 +11,15 @@ spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
 spring.jpa.show-sql=true
 
 
+
+
+
+
 Class Group Management System
 
 Database
+
+![image](https://github.com/raravindkrishna/academicsapp/assets/126563764/92266c6a-39d4-4470-b84a-f60117fab66b)
 
  
 Models:
