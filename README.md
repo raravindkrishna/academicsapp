@@ -25,6 +25,7 @@ Database
 Models:
 
 Faculty
+
 Course
 Student
 ClassGroup
