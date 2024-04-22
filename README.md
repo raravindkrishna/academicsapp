@@ -1,14 +1,14 @@
 applications.properties file is ignored
 
 
-spring.application.name=academicsapp
-spring.datasource.url={DB_URL}
-spring.datasource.username={DB_USERNAME}
-spring.datasource.password={DB_PASSWORD} 
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect 
-spring.jpa.show-sql=true
+spring.application.name=academicsapp  
+spring.datasource.url={DB_URL}  
+spring.datasource.username={DB_USERNAME}  
+spring.datasource.password={DB_PASSWORD}  
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver  
+spring.jpa.hibernate.ddl-auto=update  
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect   
+spring.jpa.show-sql=true  
 
 
 
