@@ -113,49 +113,50 @@ Methods
 •	updateCourseOfClassGroup()  
 •	updateFacultyOfClassGroup()  
   
-ClassGroupEnrollmentController
-Methods
-•	addStudentToClassGroup() //will accept list of student ids to be enrolled and classgroupid
-•	removeStudentsFromClassGroup() //will accept list of student ids to be deleted and classgroupid
-•	getAllStudentsInClassGroup() 
-Service
-FacultyService
-Methods
-•	createFaculty()
-•	getAllFaculties()
-•	getFacultyById()
-•	updateFacultyById()
-•	deleteFacultyById()
-CourseService 
-Methods
-•	createCourse()
-•	getAllCourses()
-•	getCourseById()
-•	updateCourseById()
-•	deleteCourseById()
-StudentService
-Methods
-•	createStudent()
-•	getAllStudents()
-•	getStudentById()
-•	updateStudentById()
-•	deleteStudentById()
-ClassGroupService
-Methods
-•	createClassGroup()
-•	getAllClassGroups()
-•	getClassGroupById()
-•	updateClassGroupById()
-•	deleteClassGroupById()
-ClassGroupStudentService
-Methods
-•	addStudentToClassGroup() 
-•	removeStudentsFromClassGroup() //will accept list of student ids to be deleted and classgroupid
-•	getStudentsEnrolledInClassGroupById() 
-DAO
-All these will implement JPA repo
-FacultyDAO
-CourseDAO
-StudentDAO
-ClassGroupDAO 
-ClassGroupStudentDAO
+ClassGroupStudentController  
+Methods  
+•	addStudentToClassGroup() //will accept list of student ids to be enrolled and classgroupid  
+•	removeStudentsFromClassGroup() //will accept list of student ids to be deleted and classgroupid  
+•	getAllStudentsInClassGroup()   
+
+Service  
+FacultyService  
+Methods  
+•	createFaculty()  
+•	getAllFaculties()  
+•	getFacultyById()  
+•	updateFacultyById()  
+•	deleteFacultyById()  
+CourseService   
+Methods  
+•	createCourse()  
+•	getAllCourses()  
+•	getCourseById()  
+•	updateCourseById()  
+•	deleteCourseById()  
+StudentService  
+Methods  
+•	createStudent()  
+•	getAllStudents()  
+•	getStudentById()  
+•	updateStudentById()  
+•	deleteStudentById()  
+ClassGroupService  
+Methods  
+•	createClassGroup()  
+•	getAllClassGroups()  
+•	getClassGroupById()  
+•	updateClassGroupById()  
+•	deleteClassGroupById()  
+ClassGroupStudentService  
+Methods  
+•	addStudentToClassGroup()   
+•	removeStudentsFromClassGroup() //will accept list of student ids to be deleted and classgroupid  
+•	getStudentsEnrolledInClassGroupById()   
+DAO  
+All these will implement JPA repo  
+FacultyDAO  
+CourseDAO  
+StudentDAO  
+ClassGroupDAO   
+ClassGroupStudentDAO  
