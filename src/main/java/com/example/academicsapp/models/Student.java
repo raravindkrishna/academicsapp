@@ -14,5 +14,6 @@ public class Student {
 
     @Column(unique = true)
     private String rollNo;
+
     private String studentName;
 }
