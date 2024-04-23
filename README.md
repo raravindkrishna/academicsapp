@@ -1,4 +1,4 @@
-applications.properties file is ignored
+application.properties file is ignored
 
 
 spring.application.name=academicsapp  
