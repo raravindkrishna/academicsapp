@@ -20,7 +20,7 @@ public class ClassGroupStudentsController {
     @Autowired
     private ClassGroupStudentService classGroupStudentService;
 
-    @GetMapping 
+    @GetMapping   
     public ResponseEntity<List<Student>> getAllStudentsInClassGroup(@PathVariable Integer classGroupId) {
             List<Student> students = classGroupStudentService.getAllStudentsInClassGroup(classGroupId);
             return new ResponseEntity<>(students, HttpStatus.OK);
