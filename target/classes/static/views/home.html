@@ -1,6 +1,44 @@
 <div>
-  <p>classGroups</p>
-  <li ng-repeat="classGroup in classGroups">
-    {{ classGroup.id }} - {{ classGroup.classGroupName }}
-  </li>
+  <h2 class="centerhead">Class Groups</h2>
+  <button class="addbtn" ng-click="addCg()">Add ClassGroup</button>
+  <br /><br />
+
+  <div id="createCgModal" class="modal" ng-show="showCgCreateModal">
+    <div class="modal-content">
+      <span class="close" ng-click="closeCgCreateModal()">&times;</span>
+      <h2>Create ClassGroup</h2>
+      <form ng-submit="addClassGroup()">
+        <label>ClassGroup Name</label>
+        <input type="text" ng-model="newClassGroup.classGroupName" required />
+        <label>Select Course</label>
+        <select
+          ng-model="newClassGroup.course"
+          ng-options="course as course.courseName for course in courses"
+        >
+          <option>Select course</option>
+        </select>
+        <label>Select Faculty</label>
+        <select
+          ng-model="newClassGroup.faculty"
+          ng-options="faculty as faculty.facultyName for faculty in faculties"
+        >
+          <option>Select faculty</option>
+        </select>
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+
+  <ul>
+    <div>
+      <div class="box">
+        <li
+          ng-repeat="classGroup in classGroups"
+          ng-click="selectClassGroup(classGroup.id)"
+        >
+          {{ classGroup.id }} - {{ classGroup.classGroupName }}
+        </li>
+      </div>
+    </div>
+  </ul>
 </div>

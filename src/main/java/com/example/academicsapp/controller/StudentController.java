@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/home/student")
+@RequestMapping("/api/student")
 public class StudentController {
 
     @Autowired
@@ -47,11 +47,10 @@ public class StudentController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteStudentById(@RequestParam("id") List<Integer> ids) {
+    public ResponseEntity deleteStudentById(@RequestParam("id") List<Integer> ids) {
         for (Integer id : ids) {
             studentService.deleteStudentById(id);
         }
-        String message = "Deleted Successfully";
-        return new ResponseEntity<>(message, HttpStatus.OK);
+        return new ResponseEntity( HttpStatus.OK);
     }
 }

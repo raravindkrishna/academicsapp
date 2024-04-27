@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @RestController
-@RequestMapping("/home/classGroup")
+@RequestMapping("/api/classGroup")
 public class ClassGroupController {
 
     @Autowired
@@ -58,23 +58,25 @@ public class ClassGroupController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteClassGroupById(@RequestParam("id") List<Integer> ids){
+    public ResponseEntity deleteClassGroupById(@RequestParam("id") List<Integer> ids){
         for(Integer id : ids) {
             classGroupService.deleteClassGroupById(id);
         }
-        String message = "Deleted Successfully";
-        return new ResponseEntity<>(message, HttpStatus.OK);
+
+        return new ResponseEntity( HttpStatus.OK);
     }
 
-    @PutMapping("{classGroupId}/faculty/{facultyId}")
-    public ResponseEntity<String> updateFacultyOfClassGroup(@PathVariable Integer classGroupId, @PathVariable Integer facultyId){
+    @PutMapping("/{classGroupId}/faculty/{facultyId}")
+    public ResponseEntity updateFacultyOfClassGroup(@PathVariable Integer classGroupId, @PathVariable Integer facultyId){
         ClassGroup updatedClassGroup = classGroupService.updateFacultyOfClassGroup(classGroupId, facultyId);
         if(updatedClassGroup==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        String message = "Updated Successfully";
-        return new ResponseEntity<>(message, HttpStatus.OK);
+
+        return new ResponseEntity (HttpStatus.OK);
     }
+    /*
+Not allowed
     @PutMapping("{classGroupId}/course/{courseId}")
     public ResponseEntity<String> updateCourseOfClassGroup(@PathVariable Integer classGroupId, @PathVariable Integer courseId){
         ClassGroup updatedClassGroup = classGroupService.updateCourseOfClassGroup(classGroupId, courseId);
@@ -84,4 +86,5 @@ public class ClassGroupController {
         String message = "Updated Successfully";
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
+*/
 }

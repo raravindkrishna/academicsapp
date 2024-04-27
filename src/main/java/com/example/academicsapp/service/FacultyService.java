@@ -36,7 +36,7 @@ public class FacultyService {
         if(oldFaculty==null){
             return null;
         }
-        BeanUtils.copyProperties(oldFaculty, newFaculty, "id");
+        BeanUtils.copyProperties(newFaculty, oldFaculty, "id");
         return facultyDao.save(oldFaculty);
     }
 

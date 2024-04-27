@@ -32,7 +32,7 @@ public class StudentService {
         if(oldStudent==null){
             return null;
         }
-        BeanUtils.copyProperties(oldStudent, newStudent, "id");
+        BeanUtils.copyProperties(newStudent, oldStudent, "id");
         return studentDao.save(oldStudent);
     }
 

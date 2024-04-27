@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/home/course")
+@RequestMapping("/api/course")
 public class CourseController {
 
     @Autowired
@@ -50,12 +50,12 @@ public class CourseController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteCourseById(@RequestParam("id") List<Integer> ids){
+    public ResponseEntity deleteCourseById(@RequestParam("id") List<Integer> ids){
         for(Integer id : ids) {
             courseService.deleteCourseById(id);
         }
-        String message = "Deleted Successfully";
-        return new ResponseEntity<>(message, HttpStatus.OK);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/{courseId}/faculties")

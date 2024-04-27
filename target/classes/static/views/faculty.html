@@ -1,3 +1,62 @@
-<div>
-    <p>faculties</p>
+<div ng-controller="FacultyController">
+  <h2>Faculties</h2>
+  <br />
+  <div>
+    <label
+      ><input
+        type="checkbox"
+        ng-model="selectAll"
+        ng-change="toggleSelectAll()"
+      />
+      Select All</label
+    >
+
+    <select ng-model="selectedAction" ng-change="performAction()">
+      <option value="">Select Action</option>
+      <option value="delete">Delete Selected</option>
+      <option value="edit">Edit Faculty</option>
+      <option value="create">Create Faculty</option>
+    </select>
+    <br /><br />
+  </div>
+  <table>
+    <tr>
+      <th>Select</th>
+
+      <th>Faculty Name</th>
+    </tr>
+    <tr class="items" ng-repeat="faculty in faculties">
+      <td><input type="checkbox" ng-model="faculty.selected" /></td>
+
+      <td>{{ faculty.facultyName }}</td>
+    </tr>
+  </table>
+
+  <!-- Edit Faculty Modal -->
+  <div id="editFacultyModal" class="modal" ng-show="showFacultyEditModal">
+    <div class="modal-content">
+      <span class="close" ng-click="closeFacultyEditModal()">&times;</span>
+      <h2>Edit Faculty</h2>
+      <form ng-submit="updateFaculty()">
+        <label>Faculty Name:</label>
+        <input type="text" ng-model="editedFaculty.facultyName" required />
+
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Create Faculty Modal -->
+
+  <div id="createFacultyModal" class="modal" ng-show="showFacultyCreateModal">
+    <div class="modal-content">
+      <span class="close" ng-click="closeFacultyCreateModal()">&times;</span>
+      <h2>Create Faculty</h2>
+      <form ng-submit="addFaculty()">
+        <label>Faculty Name:</label>
+        <input type="text" ng-model="newFaculty.facultyName" required />
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
 </div>

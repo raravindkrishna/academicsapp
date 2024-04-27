@@ -1,4 +1,71 @@
-<div>
-  <p>courses</p>
-  <p>ssssss</p>
+<div ng-controller="CourseController">
+  <h2>Courses</h2>
+  <br />
+  <div>
+    <label
+      ><input
+        type="checkbox"
+        ng-model="selectAll"
+        ng-change="toggleSelectAll()"
+      />
+      Select All</label
+    >
+
+    <select ng-model="selectedAction" ng-change="performAction()">
+      <option value="">Select Action</option>
+      <option value="delete">Delete Selected</option>
+      <option value="edit">Edit Course</option>
+      <option value="create">Create Course</option>
+    </select>
+    <br /><br />
+  </div>
+  <table>
+    <tr>
+      <th>Select</th>
+      <th>Course Code</th>
+      <th>Course Name</th>
+      <th>Description</th>
+    </tr>
+    <tr class="items" ng-repeat="course in courses">
+      <td><input type="checkbox" ng-model="course.selected" /></td>
+      <td>{{ course.courseCode }}</td>
+      <td>{{ course.courseName }}</td>
+      <td>{{course.description}}</td>
+    </tr>
+  </table>
+
+  <!-- Edit Course Modal -->
+  <div id="editCourseModal" class="modal" ng-show="showCourseEditModal">
+    <div class="modal-content">
+      <span class="close" ng-click="closeCourseEditModal()">&times;</span>
+      <h2>Edit Course</h2>
+      <form ng-submit="updateCourse()">
+        <label>Course Code:</label>
+        <input type="text" ng-model="editedCourse.courseCode" required />
+        <label>Course Name:</label>
+        <input type="text" ng-model="editedCourse.courseName" required />
+        <label>Description:</label>
+        <input type="textarea" ng-model="editedCourse.description" />
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Create Course Modal -->
+
+  <div id="createCourseModal" class="modal" ng-show="showCourseCreateModal">
+    <div class="modal-content">
+      <span class="close" ng-click="closeCourseCreateModal()">&times;</span>
+      <h2>Create Course</h2>
+      <form ng-submit="addCourse()">
+        <label>Course Code:</label>
+        <input type="text" ng-model="newCourse.courseCode" required />
+        <label>Course Name:</label>
+        <input type="text" ng-model="newCourse.courseName" required />
+        <label>Description:</label>
+        <input type="textarea" ng-model="newCourse.description" />
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
 </div>

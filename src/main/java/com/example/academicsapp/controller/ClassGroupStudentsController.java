@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/home/classGroup/{classGroupId}/students")
+@RequestMapping("/api/classGroup/{classGroupId}/students")
 public class ClassGroupStudentsController {
 
     @Autowired
@@ -27,14 +27,14 @@ public class ClassGroupStudentsController {
     }
 
     @PostMapping("/{studentId}")
-    public ResponseEntity<String> addStudentToClassGroup(@PathVariable Integer classGroupId, @PathVariable Integer studentId){
+    public ResponseEntity addStudentToClassGroup(@PathVariable Integer classGroupId, @PathVariable Integer studentId){
         String message = classGroupStudentService.addStudentToClassGroup(classGroupId, studentId);
-        return new ResponseEntity<>(message, HttpStatus.CREATED);
+        return new ResponseEntity( HttpStatus.CREATED);
     }
 
     @DeleteMapping
-    public ResponseEntity<String> removeStudentsFromClassGroup(@PathVariable Integer classGroupId,@RequestParam("id") List<Integer> ids){
+    public ResponseEntity removeStudentsFromClassGroup(@PathVariable Integer classGroupId,@RequestParam("id") List<Integer> ids){
         String message = classGroupStudentService.removeStudentsFromClassGroup( classGroupId ,ids);
-        return new ResponseEntity<>(message,HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

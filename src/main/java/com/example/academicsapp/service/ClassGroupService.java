@@ -58,7 +58,8 @@ public class ClassGroupService {
         updatedClassGroup.setFaculty(newfaculty);
         return classGroupDao.save(updatedClassGroup);
     }
-
+/*
+Not allowed
     public ClassGroup updateCourseOfClassGroup(Integer classGroupId, Integer courseId){
         Course newCourse = courseDao.findById(courseId).orElse(null);
         ClassGroup updatedClassGroup = classGroupDao.findById(classGroupId).orElse(null);
@@ -68,4 +69,5 @@ public class ClassGroupService {
         updatedClassGroup.setCourse(newCourse);
         return classGroupDao.save(updatedClassGroup);
     }
+*/
 }
