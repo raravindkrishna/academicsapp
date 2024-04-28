@@ -7,6 +7,7 @@ import com.example.academicsapp.models.ClassGroup;
 import com.example.academicsapp.models.ClassGroupStudent;
 import com.example.academicsapp.models.Student;
 import com.example.academicsapp.service.ClassGroupStudentService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,41 +26,51 @@ public class ClassGroupStudentServiceImpl implements ClassGroupStudentService {
 
     @Override
     public List<Student> getAllStudentsInClassGroup(Integer classGroupId) {
+        if (classGroupId == null ) {
+            throw new IllegalArgumentException("ClassGroup id must not be null");
+        }
         return studentDao.findAllByClassGroupId(classGroupId);
     }
 
     @Override
-    public String addStudentToClassGroup(Integer classGroupId, Integer studentId){
-        ClassGroup classGroup = classGroupDao.findById(classGroupId).orElse(null);
-        Student student = studentDao.findById(studentId).orElse(null);
+    public ClassGroupStudent addStudentToClassGroup(Integer classGroupId, Integer studentId){
+        if (classGroupId == null || studentId==null) {
+            throw new IllegalArgumentException("student object must not be null");
+        }
+        ClassGroup classGroup = classGroupDao.findById(classGroupId).orElseThrow(() -> new EntityNotFoundException("ClassGroup not found with id: " + classGroupId));
+        Student student = studentDao.findById(studentId).orElseThrow(() -> new EntityNotFoundException("Faculty not found with id: " + studentId));
         if(classGroup==null || student==null){
-            return "ClassGroup or Student does not exist";
+            throw new IllegalArgumentException("ClassGroup or student object must not be null");
         }
 
         if (classGroupStudentDao.findByClassGroupAndStudent(classGroup, student).isPresent()) {
-            return "Student already enrolled";
+            throw new RuntimeException("Student already enrolled");
         }
 
         ClassGroupStudent classGroupStudent = new ClassGroupStudent();
         classGroupStudent.setClassGroup(classGroup);
         classGroupStudent.setStudent(student);
-        classGroupStudentDao.save(classGroupStudent);
-
-        return "Student is added to ClassGroup";
+        return classGroupStudentDao.save(classGroupStudent);
     }
 
     @Override
-    public String removeStudentsFromClassGroup(Integer classGroupId,List<Integer> ids){
-        ClassGroup classGroup = classGroupDao.findById(classGroupId).orElse(null);
+    public void removeStudentsFromClassGroup(Integer classGroupId,List<Integer> ids){
+        if (classGroupId == null) {
+            throw new IllegalArgumentException("classGroup id must not be null");
+        }
+        ClassGroup classGroup = classGroupDao.findById(classGroupId).orElseThrow(() -> new EntityNotFoundException("ClassGroup not found with id: " + classGroupId));
 
         for(Integer id: ids){
-            Student student = studentDao.findById(id).orElse(null);
+            if (id == null) {
+                throw new IllegalArgumentException("Student id must not be null");
+            }
+            Student student = studentDao.findById(id).orElseThrow(() -> new EntityNotFoundException("Student not found with id: " + id));
             ClassGroupStudent classGroupStudent = classGroupStudentDao.findByClassGroupAndStudent(classGroup, student).orElse(null);
             if(classGroupStudent==null){
                 continue;
             }
             classGroupStudentDao.delete(classGroupStudent);
         }
-        return "Students mentioned are removed from the ClassGroup";
+
     }
 }

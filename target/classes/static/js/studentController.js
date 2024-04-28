@@ -1,7 +1,6 @@
 app.controller("StudentController", function ($scope, $http, $window) {
   $scope.selectedAction = "";
 
-  // Function to perform selected action
   $scope.performAction = function () {
     if ($scope.selectedAction === "delete") {
       $scope.deleteSelectedStudents();
@@ -10,11 +9,10 @@ app.controller("StudentController", function ($scope, $http, $window) {
     } else if ($scope.selectedAction === "create") {
       $scope.createStudent();
     }
-    // Reset selected action
+
     $scope.selectedAction = "";
   };
 
-  // Fetch all students from the backend
   $scope.fetchStudents = function () {
     $http
       .get("http://localhost:8080/api/student")
@@ -27,14 +25,12 @@ app.controller("StudentController", function ($scope, $http, $window) {
   };
   $scope.fetchStudents();
 
-  // Toggle select all checkboxes
   $scope.toggleSelectAll = function () {
     angular.forEach($scope.students, function (student) {
       student.selected = $scope.selectAll;
     });
   };
 
-  // Delete selected students
   $scope.deleteSelectedStudents = function () {
     var selectedStudentIds = [];
     angular.forEach($scope.students, function (student) {
@@ -56,9 +52,8 @@ app.controller("StudentController", function ($scope, $http, $window) {
         params: { id: selectedStudentIds },
       })
         .then(function (response) {
-          // Refresh the list of students after deletion
           $scope.fetchStudents();
-          // Reset select all checkbox
+
           $scope.selectAll = false;
         })
         .catch(function (error) {
@@ -68,7 +63,6 @@ app.controller("StudentController", function ($scope, $http, $window) {
     }
   };
 
-  // Edit Student
   $scope.editStudent = function () {
     var selectedStudents = $scope.students.filter(function (student) {
       return student.selected;
@@ -81,7 +75,6 @@ app.controller("StudentController", function ($scope, $http, $window) {
     $scope.showStudentEditModal = true;
   };
 
-  // Update Student
   $scope.updateStudent = function () {
     $http
       .put(
@@ -89,9 +82,8 @@ app.controller("StudentController", function ($scope, $http, $window) {
         $scope.editedStudent
       )
       .then(function (response) {
-        // Refresh the list of students after update
         $scope.fetchStudents();
-        // Close the edit modal
+
         $scope.closeStudentEditModal();
       })
       .catch(function (error) {
@@ -99,27 +91,21 @@ app.controller("StudentController", function ($scope, $http, $window) {
       });
   };
 
-  // Close Edit Modal
   $scope.closeStudentEditModal = function () {
     $scope.showStudentEditModal = false;
     $scope.editedStudent = null;
   };
 
-  // Create Student
   $scope.createStudent = function () {
     $scope.newStudent = {};
     $scope.showStudentCreateModal = true;
   };
 
-  // Add Student
   $scope.addStudent = function () {
     $http
       .post("http://localhost:8080/api/student", $scope.newStudent)
       .then(function (response) {
-        // Refresh the list of students after creation
         $scope.fetchStudents();
-        // Close the create modal
-        $scope.closeStudentCreateModal();
       })
       .catch(function (error) {
         console.error("Error creating student:", error);

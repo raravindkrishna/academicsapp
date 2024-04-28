@@ -9,7 +9,7 @@
   <div id="editCgModal" class="modal" ng-show="showCgEditModal">
     <div class="modal-content">
       <span class="close" ng-click="closeCgEditModal()">&times;</span>
-      <h2>Edit Faculty</h2>
+      <h2>Class Group</h2>
       <form ng-submit="updateCg()">
         <label>Class Group Name: </label>
         <input
@@ -80,6 +80,9 @@
           <option>Select Student</option>
         </select>
         <button type="submit">Add Student</button>
+        <span class="redmsg" ng-show="showadd"
+          >Student is already present!</span
+        >
       </form>
     </div>
   </div>

@@ -108,8 +108,6 @@ app.controller("CourseController", function ($scope, $http, $window) {
       .post("http://localhost:8080/api/course", $scope.newCourse)
       .then(function (response) {
         $scope.fetchCourses();
-
-        $scope.closeCourseCreateModal();
       })
       .catch(function (error) {
         console.error("Error creating course:", error);

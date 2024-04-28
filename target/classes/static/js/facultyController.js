@@ -106,8 +106,6 @@ app.controller("FacultyController", function ($scope, $http, $window) {
       .post("http://localhost:8080/api/faculty", $scope.newFaculty)
       .then(function (response) {
         $scope.fetchFaculties();
-
-        $scope.closeFacultyCreateModal();
       })
       .catch(function (error) {
         console.error("Error creating faculty:", error);

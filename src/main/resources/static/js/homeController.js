@@ -48,8 +48,6 @@ app.controller("HomeController", function ($scope, $http, $location) {
         .post("http://localhost:8080/api/classGroup", $scope.newClassGroup)
         .then(function (response) {
           $scope.getClassGroups();
-
-          $scope.closeCgCreateModal();
         })
         .catch(function (error) {
           console.error("Error creating faculty:", error);

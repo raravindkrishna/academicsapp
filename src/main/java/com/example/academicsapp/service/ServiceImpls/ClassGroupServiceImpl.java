@@ -6,6 +6,7 @@ import com.example.academicsapp.dao.FacultyDao;
 import com.example.academicsapp.models.ClassGroup;
 import com.example.academicsapp.models.Faculty;
 import com.example.academicsapp.service.ClassGroupService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,32 +35,50 @@ public class ClassGroupServiceImpl implements ClassGroupService {
     }
     @Override
     public ClassGroup createClassGroup(ClassGroup classGroup){
-        return classGroupDao.save(classGroup);
+        if (classGroup == null || classGroup.getClassGroupName() == null || classGroup.getFaculty() == null || classGroup.getCourse() == null) {
+            throw new IllegalArgumentException("ClassGroup object, classGroupName, faculty, and course cannot be null");
+        }
+        try {
+            return classGroupDao.save(classGroup);
+        } catch (Exception e) {
+            throw new RuntimeException("Error occurred while creating ClassGroup", e);
+        }
     }
 
     @Override
     public ClassGroup updateClassGroup(Integer id, ClassGroup newClassGroup) {
-        ClassGroup oldClassGroup = classGroupDao.findById(id).orElse(null);
-
-        if(oldClassGroup==null){
-            return null;
+        if (newClassGroup.getClassGroupName() == null ) {
+            throw new IllegalArgumentException("New classGroupName cannot be null");
         }
-        BeanUtils.copyProperties(newClassGroup, oldClassGroup, "id");
-        return classGroupDao.save(oldClassGroup);
+        try {
+            ClassGroup oldClassGroup = classGroupDao.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("ClassGroup not found with id: " + id));
+            BeanUtils.copyProperties(newClassGroup, oldClassGroup, "id", "faculty", "course");
+            return classGroupDao.save(oldClassGroup);
+        } catch (Exception e) {
+            throw new RuntimeException("Error occurred while updating ClassGroup with id: " + id, e);
+        }
     }
     @Override
     public void deleteClassGroupById(Integer id){
-        classGroupDao.deleteById(id);
+        try {
+            classGroupDao.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Error occurred while deleting ClassGroup with id: " + id, e);
+        }
     }
     @Override
     public ClassGroup updateFacultyOfClassGroup(Integer classGroupId, Integer facultyId){
-        Faculty newfaculty = facultyDao.findById(facultyId).orElse(null);
-        ClassGroup updatedClassGroup = classGroupDao.findById(classGroupId).orElse(null);
-
-        if(newfaculty==null || updatedClassGroup==null){
-            return null;
+        if (classGroupId == null || facultyId == null) {
+            throw new IllegalArgumentException("ClassGroupId and FacultyId must not be null");
         }
-        updatedClassGroup.setFaculty(newfaculty);
+
+        Faculty newFaculty = facultyDao.findById(facultyId)
+                .orElseThrow(() -> new EntityNotFoundException("Faculty not found with id: " + facultyId));
+        ClassGroup updatedClassGroup = classGroupDao.findById(classGroupId)
+                .orElseThrow(() -> new EntityNotFoundException("ClassGroup not found with id: " + classGroupId));
+
+        updatedClassGroup.setFaculty(newFaculty);
         return classGroupDao.save(updatedClassGroup);
     }
 /*

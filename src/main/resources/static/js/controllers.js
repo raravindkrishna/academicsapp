@@ -149,9 +149,12 @@ app.controller(
             $scope.selectedStudent.id
         )
         .then(function (response) {
-          $scope.getStudents();
-
-          $scope.closeStudentCreateModal();
+          if (response.data.id === null) {
+            $scope.showadd = true;
+          } else {
+            $scope.showadd = false;
+            $scope.getStudents();
+          }
         })
         .catch(function (error) {
           console.error("Error adding student", error);
