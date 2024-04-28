@@ -1,11 +1,7 @@
 package com.example.academicsapp.controller;
 
-import com.example.academicsapp.models.ClassGroup;
-import com.example.academicsapp.models.ClassGroupStudent;
 import com.example.academicsapp.models.Student;
-import com.example.academicsapp.service.ClassGroupService;
-import com.example.academicsapp.service.ClassGroupStudentService;
-import com.example.academicsapp.service.ClassGroupStudentService;
+import com.example.academicsapp.service.ServiceImpls.ClassGroupStudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +14,7 @@ import java.util.List;
 public class ClassGroupStudentsController {
 
     @Autowired
-    private ClassGroupStudentService classGroupStudentService;
+    private ClassGroupStudentServiceImpl classGroupStudentService;
 
     @GetMapping   
     public ResponseEntity<List<Student>> getAllStudentsInClassGroup(@PathVariable Integer classGroupId) {

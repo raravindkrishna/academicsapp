@@ -102,9 +102,8 @@ app.controller(
           $scope.editedCg
         )
         .then(function (response) {
-          // Refresh the list of faculties after update
           $scope.getClassgrpDetails();
-          // Close the edit modal
+
           $scope.closeCgEditModal();
         })
         .catch(function (error) {
@@ -118,7 +117,7 @@ app.controller(
       } else if ($scope.selectedAction === "add") {
         $scope.showStudentCreateModal();
       }
-      // Reset selected action
+
       $scope.selectedAction = "";
     };
 
@@ -150,9 +149,8 @@ app.controller(
             $scope.selectedStudent.id
         )
         .then(function (response) {
-          // Refresh the list of courses after creation
           $scope.getStudents();
-          // Close the create modal
+
           $scope.closeStudentCreateModal();
         })
         .catch(function (error) {
@@ -192,9 +190,8 @@ app.controller(
           params: { id: selectedjoinStudentIds },
         })
           .then(function (response) {
-            // Refresh the list of courses after deletion
             $scope.getStudents();
-            // Reset select all checkbox
+
             $scope.selectAll = false;
           })
           .catch(function (error) {
@@ -204,5 +201,3 @@ app.controller(
     };
   }
 );
-
-app.controller("MainController", function ($scope, $http) {});

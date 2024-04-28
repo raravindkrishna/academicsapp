@@ -49,7 +49,7 @@ nav ul {
   margin: 0;
   padding: 0;
   padding-left: 100px;
-  display: flex; /* Use flexbox */
+  display: flex;
   background-color: red;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -61,12 +61,12 @@ nav ul li {
 }
 
 nav ul li:last-child {
-  margin-right: 0; /* Remove margin from last child */
+  margin-right: 0;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: white; /* Link color */
+  color: white;
   font-weight: bold;
 }
 
@@ -119,7 +119,6 @@ button:hover {
   border: solid black;
 }
 
-/* Styling for modal windows */
 .modal {
   display: block;
   position: fixed;

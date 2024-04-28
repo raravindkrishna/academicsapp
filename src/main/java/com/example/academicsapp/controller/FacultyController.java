@@ -2,7 +2,7 @@ package com.example.academicsapp.controller;
 
 import com.example.academicsapp.models.Course;
 import com.example.academicsapp.models.Faculty;
-import com.example.academicsapp.service.FacultyService;
+import com.example.academicsapp.service.ServiceImpls.FacultyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.List;
 public class FacultyController {
 
     @Autowired
-    FacultyService facultyService;
+    FacultyServiceImpl facultyService;
     @GetMapping
     public List<Faculty> getAllFaculties(){
         return facultyService.getAllFaculties();

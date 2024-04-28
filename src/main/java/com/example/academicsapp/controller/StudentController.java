@@ -1,7 +1,7 @@
 package com.example.academicsapp.controller;
 
 import com.example.academicsapp.models.Student;
-import com.example.academicsapp.service.StudentService;
+import com.example.academicsapp.service.ServiceImpls.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    private StudentService studentService;
+    private StudentServiceImpl studentService;
 
     @GetMapping
     public List<Student> getAllStudents() {

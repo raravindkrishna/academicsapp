@@ -1,7 +1,6 @@
 app.controller("CourseController", function ($scope, $http, $window) {
   $scope.selectedAction = "";
 
-  // Function to perform selected action
   $scope.performAction = function () {
     if ($scope.selectedAction === "delete") {
       $scope.deleteSelectedCourses();
@@ -10,11 +9,10 @@ app.controller("CourseController", function ($scope, $http, $window) {
     } else if ($scope.selectedAction === "create") {
       $scope.createCourse();
     }
-    // Reset selected action
+
     $scope.selectedAction = "";
   };
 
-  // Fetch all courses from the backend
   $scope.fetchCourses = function () {
     $http
       .get("http://localhost:8080/api/course")
@@ -34,7 +32,6 @@ app.controller("CourseController", function ($scope, $http, $window) {
     });
   };
 
-  // Delete selected courses
   $scope.deleteSelectedCourses = function () {
     var selectedCourseIds = [];
     angular.forEach($scope.courses, function (course) {
@@ -56,9 +53,8 @@ app.controller("CourseController", function ($scope, $http, $window) {
         params: { id: selectedCourseIds },
       })
         .then(function (response) {
-          // Refresh the list of courses after deletion
           $scope.fetchCourses();
-          // Reset select all checkbox
+
           $scope.selectAll = false;
         })
         .catch(function (error) {
@@ -89,9 +85,7 @@ app.controller("CourseController", function ($scope, $http, $window) {
         $scope.editedCourse
       )
       .then(function (response) {
-        // Refresh the list of courses after update
         $scope.fetchCourses();
-        // Close the edit modal
         $scope.closeCourseEditModal();
       })
       .catch(function (error) {
@@ -99,26 +93,22 @@ app.controller("CourseController", function ($scope, $http, $window) {
       });
   };
 
-  // Close Edit Modal
   $scope.closeCourseEditModal = function () {
     $scope.showCourseEditModal = false;
     $scope.editedCourse = null;
   };
 
-  // Create Course
   $scope.createCourse = function () {
     $scope.newCourse = {};
     $scope.showCourseCreateModal = true;
   };
 
-  // Add Course
   $scope.addCourse = function () {
     $http
       .post("http://localhost:8080/api/course", $scope.newCourse)
       .then(function (response) {
-        // Refresh the list of courses after creation
         $scope.fetchCourses();
-        // Close the create modal
+
         $scope.closeCourseCreateModal();
       })
       .catch(function (error) {

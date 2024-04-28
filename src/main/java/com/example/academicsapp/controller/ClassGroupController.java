@@ -1,16 +1,13 @@
 package com.example.academicsapp.controller;
 
 import com.example.academicsapp.models.ClassGroup;
-import com.example.academicsapp.models.Course;
-import com.example.academicsapp.models.Faculty;
-import com.example.academicsapp.service.ClassGroupService;
-import com.example.academicsapp.service.FacultyService;
+import com.example.academicsapp.service.ServiceImpls.ClassGroupServiceImpl;
+import com.example.academicsapp.service.ServiceImpls.FacultyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Serializable;
 import java.util.List;
 
 @RestController
@@ -18,10 +15,10 @@ import java.util.List;
 public class ClassGroupController {
 
     @Autowired
-    private ClassGroupService classGroupService;
+    private ClassGroupServiceImpl classGroupService;
 
     @Autowired
-    private FacultyService facultyService;
+    private FacultyServiceImpl facultyService;
 
     @GetMapping
     public List<ClassGroup> getAllClassGroups(){

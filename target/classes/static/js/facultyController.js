@@ -1,7 +1,6 @@
 app.controller("FacultyController", function ($scope, $http, $window) {
   $scope.selectedAction = "";
 
-  // Function to perform selected action
   $scope.performAction = function () {
     if ($scope.selectedAction === "delete") {
       $scope.deleteSelectedFaculties();
@@ -10,11 +9,10 @@ app.controller("FacultyController", function ($scope, $http, $window) {
     } else if ($scope.selectedAction === "create") {
       $scope.createFaculty();
     }
-    // Reset selected action
+
     $scope.selectedAction = "";
   };
 
-  // Fetch all faculties from the backend
   $scope.fetchFaculties = function () {
     $http
       .get("http://localhost:8080/api/faculty")
@@ -27,14 +25,12 @@ app.controller("FacultyController", function ($scope, $http, $window) {
   };
   $scope.fetchFaculties();
 
-  // Toggle select all checkboxes
   $scope.toggleSelectAll = function () {
     angular.forEach($scope.faculties, function (faculty) {
       faculty.selected = $scope.selectAll;
     });
   };
 
-  // Delete selected faculties
   $scope.deleteSelectedFaculties = function () {
     var selectedFacultyIds = [];
     angular.forEach($scope.faculties, function (faculty) {
@@ -56,9 +52,8 @@ app.controller("FacultyController", function ($scope, $http, $window) {
         params: { id: selectedFacultyIds },
       })
         .then(function (response) {
-          // Refresh the list of faculties after deletion
           $scope.fetchFaculties();
-          // Reset select all checkbox
+
           $scope.selectAll = false;
         })
         .catch(function (error) {
@@ -68,7 +63,6 @@ app.controller("FacultyController", function ($scope, $http, $window) {
     }
   };
 
-  // Edit Faculty
   $scope.editFaculty = function () {
     var selectedFaculties = $scope.faculties.filter(function (faculty) {
       return faculty.selected;
@@ -81,7 +75,6 @@ app.controller("FacultyController", function ($scope, $http, $window) {
     $scope.showFacultyEditModal = true;
   };
 
-  // Update Faculty
   $scope.updateFaculty = function () {
     $http
       .put(
@@ -89,9 +82,8 @@ app.controller("FacultyController", function ($scope, $http, $window) {
         $scope.editedFaculty
       )
       .then(function (response) {
-        // Refresh the list of faculties after update
         $scope.fetchFaculties();
-        // Close the edit modal
+
         $scope.closeFacultyEditModal();
       })
       .catch(function (error) {
@@ -99,26 +91,22 @@ app.controller("FacultyController", function ($scope, $http, $window) {
       });
   };
 
-  // Close Edit Modal
   $scope.closeFacultyEditModal = function () {
     $scope.showFacultyEditModal = false;
     $scope.editedFaculty = null;
   };
 
-  // Create Faculty
   $scope.createFaculty = function () {
     $scope.newFaculty = {};
     $scope.showFacultyCreateModal = true;
   };
 
-  // Add Faculty
   $scope.addFaculty = function () {
     $http
       .post("http://localhost:8080/api/faculty", $scope.newFaculty)
       .then(function (response) {
-        // Refresh the list of faculties after creation
         $scope.fetchFaculties();
-        // Close the create modal
+
         $scope.closeFacultyCreateModal();
       })
       .catch(function (error) {
