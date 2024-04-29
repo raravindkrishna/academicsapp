@@ -1,3 +1,64 @@
-<div>
-  <p>Students</p>
+<div ng-controller="StudentController">
+  <h2>Students</h2>
+  <br />
+  <div>
+    <label
+      ><input
+        type="checkbox"
+        ng-model="selectAll"
+        ng-change="toggleSelectAll()"
+      />
+      Select All</label
+    >
+
+    <select ng-model="selectedAction" ng-change="performAction()">
+      <option value="">Select Action</option>
+      <option value="delete">Delete Selected</option>
+      <option value="edit">Edit Student</option>
+      <option value="create">Create Student</option>
+    </select>
+    <br /><br />
+  </div>
+  <table>
+    <tr>
+      <th>Select</th>
+      <th>Roll No.</th>
+      <th>Student Name</th>
+    </tr>
+    <tr class="items" ng-repeat="student in students">
+      <td><input type="checkbox" ng-model="student.selected" /></td>
+      <td>{{ student.rollNo }}</td>
+      <td>{{ student.studentName }}</td>
+    </tr>
+  </table>
+
+  <div id="editStudentModal" class="modal" ng-show="showStudentEditModal">
+    <div class="modal-content">
+      <span class="close" ng-click="closeStudentEditModal()">&times;</span>
+      <h2>Edit Student</h2>
+      <form ng-submit="updateStudent()">
+        <label>Roll No.:</label>
+        <input type="text" ng-model="editedStudent.rollNo" required />
+        <label>Student Name:</label>
+        <input type="text" ng-model="editedStudent.studentName" required />
+
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="createStudentModal" class="modal" ng-show="showStudentCreateModal">
+    <div class="modal-content">
+      <span class="close" ng-click="closeStudentCreateModal()">&times;</span>
+      <h2>Create Student</h2>
+      <form ng-submit="addStudent()">
+        <label>Roll No.:</label>
+        <input type="text" ng-model="newStudent.rollNo" required />
+        <label>Student Name:</label>
+        <input type="text" ng-model="newStudent.studentName" required />
+
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
 </div>

@@ -1,3 +1,99 @@
 <div>
-  <p>classGroupStudent</p>
+  <h2>Class Group</h2>
+  <button class="deletebtn" ng-click="deleteCg()">Delete</button>
+  <br />
+  <p>
+    <b>ClassGroup Name:</b> {{classGroup.classGroupName}}
+    <button class="editbtn" ng-click="changeCgName()">Edit</button>
+  </p>
+  <div id="editCgModal" class="modal" ng-show="showCgEditModal">
+    <div class="modal-content">
+      <span class="close" ng-click="closeCgEditModal()">&times;</span>
+      <h2>Class Group</h2>
+      <form ng-submit="updateCg()">
+        <label>Class Group Name: </label>
+        <input
+          type="text"
+          placeholder="{{classGroup.classGroupName}}"
+          ng-model="editedCg.classGroupName"
+          required
+        />
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+  <p>
+    <b>Faculty:</b> {{classGroup.faculty.facultyName}}
+    <button class="editbtn" ng-click="changeFaculty()">Edit</button>
+  </p>
+
+  <div id="editFacModal" class="modal" ng-show="showFacEditModal">
+    <div class="modal-content">
+      <span class="close" ng-click="closeFacEditModal()">&times;</span>
+      <h2>Edit Faculty</h2>
+      <form ng-submit="updateFac()">
+        <select
+          ng-model="selectedFaculty"
+          ng-options="faculty as faculty.facultyName for faculty in faculties"
+        >
+          <option>Select Faculty</option>
+        </select>
+
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <p><b>Course: </b> {{classGroup.course.courseName}}</p>
+  <br />
+  <hr />
+  <br />
+  <br />
+  <h2>Students in the Class Group</h2>
+  <br />
+  <br />
+  <div>
+    <label
+      ><input
+        type="checkbox"
+        ng-model="selectAll"
+        ng-change="toggleSelectAll()"
+      />
+      Select All</label
+    >
+    <select ng-model="selectedAction" ng-change="performAction()">
+      <option value="">Select Action</option>
+      <option value="add">Add Student</option>
+      <option value="remove">Remove Student</option>
+    </select>
+  </div>
+
+  <div id="addStudentModal" class="modal" ng-show="addStudentCreateModal">
+    <div class="modal-content">
+      <span class="close" ng-click="closeStudentCreateModal()">&times;</span>
+      <h2>Create Student</h2>
+      <form ng-submit="addStudent()">
+        <select
+          ng-model="selectedStudent"
+          ng-options="student as student.studentName for student in students"
+        >
+          <option>Select Student</option>
+        </select>
+        <button type="submit">Add Student</button>
+        <span class="redmsg" ng-show="showadd"
+          >Student is already present!</span
+        >
+      </form>
+    </div>
+  </div>
+
+  <br />
+  <ul>
+    <div>
+      <li ng-repeat="joinStudent in joinStudents">
+        <input type="checkbox" ng-model="joinStudent.selected" />
+        {{ joinStudent.rollNo }} - {{ joinStudent.studentName }}
+      </li>
+    </div>
+  </ul>
 </div>

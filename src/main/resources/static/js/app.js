@@ -16,7 +16,11 @@ app.config([
         templateUrl: "views/student.html",
         controller: "StudentController",
       })
-      .when("/classGroupStudent", {
+      .when("/faculty", {
+        templateUrl: "views/faculty.html",
+        controller: "FacultyController",
+      })
+      .when("/classGroup/:classGroupId/students", {
         templateUrl: "views/classGroupStudent.html",
         controller: "ClassGroupStudentController",
       })
