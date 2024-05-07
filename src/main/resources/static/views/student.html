@@ -38,9 +38,13 @@
       <h2>Edit Student</h2>
       <form ng-submit="updateStudent()">
         <label>Roll No.:</label>
-        <input type="text" ng-model="editedStudent.rollNo" required />
+        <input type="text" ng-model="editedStudent.rollNo" required /><br />
         <label>Student Name:</label>
-        <input type="text" ng-model="editedStudent.studentName" required />
+        <input
+          type="text"
+          ng-model="editedStudent.studentName"
+          required
+        /><br />
 
         <button type="submit">Save Changes</button>
       </form>
@@ -53,9 +57,9 @@
       <h2>Create Student</h2>
       <form ng-submit="addStudent()">
         <label>Roll No.:</label>
-        <input type="text" ng-model="newStudent.rollNo" required />
+        <input type="text" ng-model="newStudent.rollNo" required /><br />
         <label>Student Name:</label>
-        <input type="text" ng-model="newStudent.studentName" required />
+        <input type="text" ng-model="newStudent.studentName" required /><br />
 
         <button type="submit">Create</button>
       </form>

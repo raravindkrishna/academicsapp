@@ -7,23 +7,28 @@
     <div class="modal-content">
       <span class="close" ng-click="closeCgCreateModal()">&times;</span>
       <h2>Create ClassGroup</h2>
+      <br />
       <form ng-submit="addClassGroup()">
         <label>ClassGroup Name</label>
-        <input type="text" ng-model="newClassGroup.classGroupName" required />
+        <input
+          type="text"
+          ng-model="newClassGroup.classGroupName"
+          required
+        /><br />
         <label>Select Course</label>
         <select
           ng-model="newClassGroup.course"
           ng-options="course as course.courseName for course in courses"
         >
-          <option>Select course</option>
-        </select>
+          <option>Select course</option></select
+        ><br /><br />
         <label>Select Faculty</label>
         <select
           ng-model="newClassGroup.faculty"
           ng-options="faculty as faculty.facultyName for faculty in faculties"
         >
-          <option>Select faculty</option>
-        </select>
+          <option>Select faculty</option></select
+        ><br />
         <button type="submit">Create</button>
       </form>
     </div>
@@ -36,7 +41,8 @@
           ng-repeat="classGroup in classGroups"
           ng-click="selectClassGroup(classGroup.id)"
         >
-          {{ classGroup.id }} - {{ classGroup.classGroupName }}
+          {{ classGroup.classGroupName }}<br />
+          {{ classGroup.course.courseName }}
         </li>
       </div>
     </div>

@@ -6,6 +6,7 @@
     <b>ClassGroup Name:</b> {{classGroup.classGroupName}}
     <button class="editbtn" ng-click="changeCgName()">Edit</button>
   </p>
+  <br />
   <div id="editCgModal" class="modal" ng-show="showCgEditModal">
     <div class="modal-content">
       <span class="close" ng-click="closeCgEditModal()">&times;</span>
@@ -22,11 +23,11 @@
       </form>
     </div>
   </div>
-  <p>
+
+  <div>
     <b>Faculty:</b> {{classGroup.faculty.facultyName}}
     <button class="editbtn" ng-click="changeFaculty()">Edit</button>
-  </p>
-
+  </div>
   <div id="editFacModal" class="modal" ng-show="showFacEditModal">
     <div class="modal-content">
       <span class="close" ng-click="closeFacEditModal()">&times;</span>
@@ -44,7 +45,7 @@
     </div>
   </div>
 
-  <p><b>Course: </b> {{classGroup.course.courseName}}</p>
+  <div><b>Course: </b> {{classGroup.course.courseName}}</div>
   <br />
   <hr />
   <br />
@@ -90,10 +91,20 @@
   <br />
   <ul>
     <div>
-      <li ng-repeat="joinStudent in joinStudents">
-        <input type="checkbox" ng-model="joinStudent.selected" />
-        {{ joinStudent.rollNo }} - {{ joinStudent.studentName }}
-      </li>
+      <table>
+        <tr>
+          <th>Select</th>
+          <th>Roll No.</th>
+          <th>Student Name</th>
+        </tr>
+        <tr ng-repeat="joinStudent in joinStudents">
+          <td>
+            <input type="checkbox" ng-model="joinStudent.selected" />
+          </td>
+          <td>{{ joinStudent.rollNo }}</td>
+          <td>{{ joinStudent.studentName }}</td>
+        </tr>
+      </table>
     </div>
   </ul>
 </div>
