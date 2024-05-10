@@ -1,50 +1,129 @@
-<div>
-  <h2 class="centerhead">Class Groups</h2>
-  <button class="addbtn" ng-click="addCg()">Add ClassGroup</button>
-  <br /><br />
+<div class="outer-box">
+  <br />
+  <div class="container">
+    <div class="row" style="margin-left: 0px; margin-right: 0px">
+      <div style="padding-top: 10px" class="col-7">
+        <h2>Class Groups</h2>
+      </div>
+      <div style="padding: 0px" class="col-5">
+        <span style="float: right">
+          <button
+            style="padding: 8px 35px; margin-top: 5px; margin-right: 17px;"
+            class="addbtn"
+            class="addbtn"
+            ng-click="addCg()"
+          >
+            Add
+          </button>
+        </span>
+        <span
+          class="search-bar"
+          style="
+            float: right;
 
-  <div id="createCgModal" class="modal" ng-show="showCgCreateModal">
-    <div class="modal-content">
-      <span class="close" ng-click="closeCgCreateModal()">&times;</span>
-      <h2>Create ClassGroup</h2>
-      <br />
-      <form ng-submit="addClassGroup()">
-        <label>ClassGroup Name</label>
-        <input
-          type="text"
-          ng-model="newClassGroup.classGroupName"
-          required
-        /><br />
-        <label>Select Course</label>
-        <select
-          ng-model="newClassGroup.course"
-          ng-options="course as course.courseName for course in courses"
+            margin-top: 5px;
+            margin-right: 10px;
+          "
         >
-          <option>Select course</option></select
-        ><br /><br />
-        <label>Select Faculty</label>
-        <select
-          ng-model="newClassGroup.faculty"
-          ng-options="faculty as faculty.facultyName for faculty in faculties"
-        >
-          <option>Select faculty</option></select
-        ><br />
-        <button type="submit">Create</button>
-      </form>
+          <i
+            class="fa-solid fa-magnifying-glass fa-lg"
+            style="color: #a7a8aa; margin-left: 10px"
+          ></i>
+
+          <input
+            placeholder="Search"
+            type="text"
+            ng-model="search"
+            class="search-input"
+            style="border: none; outline: none"
+          />
+        </span>
+      </div>
     </div>
   </div>
 
-  <ul>
-    <div>
-      <div class="box">
-        <li
-          ng-repeat="classGroup in classGroups"
-          ng-click="selectClassGroup(classGroup.id)"
+  <hr />
+  <br />
+  <div class="container">
+
+      <ul>
+        <div
+          class="box d-flex justify-content-evenly align-items-center flex-wrap"
         >
-          {{ classGroup.classGroupName }}<br />
-          {{ classGroup.course.courseName }}
-        </li>
-      </div>
+          <li
+            ng-repeat="classGroup in classGroups | filter: search"
+            ng-click="selectClassGroup(classGroup.id)"
+          >
+            {{ classGroup.classGroupName }}<br />
+            {{ classGroup.course.courseName }}
+          </li>
+        </div>
+      </ul>
+      <br />
     </div>
-  </ul>
+  </div>
+  <div id="createCgModal" class="inmodal" ng-show="showCgCreateModal">
+    <div class="inmodal-content">
+      <div class="inmodalhead">
+        <h2>Create ClassGroup</h2>
+        <div class="close">
+          <i
+            class="fa-solid fa-xmark fa-xl"
+            ng-click="closeCgCreateModal()"
+          ></i>
+        </div>
+      </div>
+      <hr />
+
+      <form ng-submit="addClassGroup()">
+        <div class="container">
+          <div class="row">
+            <div class="col-6"><label>ClassGroup Name</label></div>
+            <div class="col-6">
+              <input
+              placeholder="ClassGroup Name"
+                type="text"
+                ng-model="newClassGroup.classGroupName"
+                required
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-6"><label>Select Course</label></div>
+            <div class="col-6">
+              <select
+                ng-model="newClassGroup.course"
+                ng-options="course as course.courseName for course in courses"
+              >
+                <option value="" disabled selected hidden>Select Course</option>
+                <option ng-repeat="course in courses" >{{ course.courseName }}</option>
+              </select>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-6"><label>Select Faculty </label></div>
+            <div class="col-6">
+              <select
+                ng-model="newClassGroup.faculty"
+                ng-options="faculty as faculty.facultyName for faculty in faculties"
+              >
+                <option value="" disabled selected hidden>Select Faculty</option>
+                <option ng-repeat="faculty in faculties" >{{ faculty.facultyName }}</option>
+              </select>
+            </div>
+          </div>
+          <br />
+          <hr>
+          <!-- <div class="row">
+            <div class="col-4"></div>
+            <button class="addbtn col-4" type="submit">Create</button>
+            <div class="col-4"></div>
+          </div> -->
+          <button style="float: right; padding: 7px 25px;" class="addbtn" type="submit">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

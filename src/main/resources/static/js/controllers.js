@@ -3,26 +3,6 @@ app.controller(
   function ($scope, $http, $window, $location, $routeParams) {
     let classGroupId = $routeParams.classGroupId;
 
-    $scope.deleteCg = function () {
-      var confirmation = $window.confirm(
-        "Are you sure you want to delete the ClassGroup?"
-      );
-      if (confirmation) {
-        $http({
-          method: "DELETE",
-          url: "http://localhost:8080/api/classGroup",
-          params: { id: classGroupId },
-        })
-          .then(function (response) {
-            $location.path("/home");
-          })
-          .catch(function (error) {
-            alert("Cannot delete classGroup mapped with classGroup Students");
-            console.error("Error deleting courses:", error);
-          });
-      }
-    };
-
     $scope.getStudents = function () {
       $http
         .get(
@@ -111,15 +91,15 @@ app.controller(
         });
     };
 
-    $scope.performAction = function () {
-      if ($scope.selectedAction === "remove") {
-        $scope.deleteSelectedStudents();
-      } else if ($scope.selectedAction === "add") {
-        $scope.showStudentCreateModal();
-      }
+    // $scope.performAction = function () {
+    //   if ($scope.selectedAction === "remove") {
+    //     $scope.deleteSelectedStudents();
+    //   } else if ($scope.selectedAction === "add") {
+    //     $scope.showStudentCreateModal();
+    //   }
 
-      $scope.selectedAction = "";
-    };
+    //   $scope.selectedAction = "";
+    // };
 
     $scope.closeStudentCreateModal = function () {
       $scope.addStudentCreateModal = false;
@@ -150,7 +130,7 @@ app.controller(
         )
         .then(function (response) {
           if (response.data.id === null) {
-            $scope.showadd = true;
+            $scope.showadd();
           } else {
             $scope.showadd = false;
             $scope.getStudents();
@@ -162,11 +142,40 @@ app.controller(
     };
 
     // delte students
-
+    $scope.showadd = function () {
+      alert("Student already in the class");
+    };
     $scope.toggleSelectAll = function () {
       angular.forEach($scope.joinStudents, function (joinStudent) {
         joinStudent.selected = $scope.selectAll;
       });
+    };
+
+    $scope.closeCgRemoveModal = function () {
+      $scope.CgRemoveModal = false;
+    };
+
+    $scope.deleteCgConfirm = function () {
+      $http({
+        method: "DELETE",
+        url: "http://localhost:8080/api/classGroup",
+        params: { id: classGroupId },
+      })
+        .then(function (response) {
+          $location.path("/home");
+        })
+        .catch(function (error) {
+          alert("Cannot delete classGroup mapped with classGroup Students");
+          console.error("Error deleting courses:", error);
+        });
+    };
+
+    $scope.deleteCg = function () {
+      $scope.CgRemoveModal = true;
+    };
+
+    $scope.closeStudentRemoveModal = function () {
+      $scope.StudentRemoveModal = false;
     };
 
     $scope.deleteSelectedStudents = function () {
@@ -180,27 +189,49 @@ app.controller(
         alert("Please select at least one student to delete.");
         return;
       }
-      var confirmation = $window.confirm(
-        "Are you sure you want to remove selected Students from class group?"
-      );
-      if (confirmation) {
-        $http({
-          method: "DELETE",
-          url:
-            "http://localhost:8080/api/classGroup/" +
-            classGroupId +
-            "/students",
-          params: { id: selectedjoinStudentIds },
-        })
-          .then(function (response) {
-            $scope.getStudents();
+      // var confirmation = $window.confirm(
+      //   "Are you sure you want to remove selected Students from class group?"
+      // );
+      $scope.StudentRemoveModal = true;
+      $scope.selectedStudentIds = selectedjoinStudentIds;
 
-            $scope.selectAll = false;
-          })
-          .catch(function (error) {
-            console.error("Error deleting Students:", error);
-          });
-      }
+      // if (confirmation) {
+      //   $http({
+      //     method: "DELETE",
+      //     url:
+      //       "http://localhost:8080/api/classGroup/" +
+      //       classGroupId +
+      //       "/students",
+      //     params: { id: selectedjoinStudentIds },
+      //   })
+      //     .then(function (response) {
+      //       $scope.getStudents();
+
+      //       $scope.selectAll = false;
+      //     })
+      //     .catch(function (error) {
+      //       console.error("Error deleting Students:", error);
+      //     });
+      // }
+    };
+
+    $scope.deleteConfirm = function () {
+      var selectedjoinStudentIds = $scope.selectedStudentIds;
+
+      $http({
+        method: "DELETE",
+        url:
+          "http://localhost:8080/api/classGroup/" + classGroupId + "/students",
+        params: { id: selectedjoinStudentIds },
+      })
+        .then(function (response) {
+          $scope.getStudents();
+          $scope.selectAll = false;
+          $scope.closeStudentRemoveModal();
+        })
+        .catch(function (error) {
+          console.error("Error deleting Students:", error);
+        });
     };
   }
 );

@@ -1,70 +1,190 @@
-<div ng-controller="CourseController">
-  <h2>Courses</h2>
-  <br />
-  <div>
-    <label
-      ><input
-        type="checkbox"
-        ng-model="selectAll"
-        ng-change="toggleSelectAll()"
-      />
-      Select All</label
-    >
+<div class="outer-box">
+   <br>
+  <div class="container">
+<div class="container">
+ <div class="row">
+  <div class="col-6">
+  <h2 style="padding-top: 10px;">Courses</h2>
+</div>
+<div class="col-6">
+  
 
-    <select ng-model="selectedAction" ng-change="performAction()">
+  <span style="padding-top: 12px;float: right;"><button style="padding: 8px 20px;" class="addbtn" ng-click="deleteSelectedCourses()">Delete </button></span>
+  <span style="padding-top: 12px; float: right;margin-right: 10px;"><button style="padding: 8px 20px;" class="addbtn" ng-click="editCourse()">Edit</button></span>
+  <span  style="padding-top: 12px;float: right;margin-right: 10px;"><button style="padding: 8px 20px;" class="addbtn" ng-click="createCourse()">Add</button></span>
+
+
+
+<span style="float: right; margin-right: 10px; height: 39px;" class="search-bar" >
+        <i
+          class="fa-solid fa-magnifying-glass fa-lg"
+          style="color: #a7a8aa; margin-left: 10px"
+        ></i>
+
+        <input
+          placeholder="Search"
+          type="text"
+          ng-model="search"
+          class="search-input"
+          style="border: none; outline: none"
+        />
+</span>
+
+</div>
+
+  <br />
+    <!-- <select ng-model="selectedAction" ng-change="performAction()">
       <option value="">Select Action</option>
       <option value="delete">Delete Selected</option>
       <option value="edit">Edit Course</option>
       <option value="create">Create Course</option>
-    </select>
-    <br /><br />
+    </select> -->
+  
   </div>
-
+<br>
     <table>
       <tr>
-        <th>Select</th>
+        <th><input
+        type="checkbox"
+        title="Select All"
+        ng-model="selectAll"
+        ng-change="toggleSelectAll()"
+      /></th>
         <th>Course Code</th>
         <th>Course Name</th>
         <th>Description</th>
       </tr>
-      <tr class="items" ng-repeat="course in courses">
+      <tr class="items" ng-repeat="course in courses | filter: search">
         <td><input type="checkbox" ng-model="course.selected" /></td>
         <td>{{ course.courseCode }}</td>
         <td>{{ course.courseName }}</td>
         <td>{{course.description}}</td>
       </tr>
     </table>
-
-    <div id="editCourseModal" class="modal" ng-show="showCourseEditModal">
-      <div class="modal-content">
-        <span class="close" ng-click="closeCourseEditModal()">&times;</span>
+<br>
+    <div id="editCourseModal" class="inmodal" ng-show="showCourseEditModal">
+      <div class="inmodal-content">
+        <div class="inmodalhead">
         <h2>Edit Course</h2>
+        <div class="close">
+          <i class="fa-solid fa-xmark fa-xl" ng-click="closeCourseEditModal()"></i>
+          </div>
+        </div>
+        <hr>
         <form ng-submit="updateCourse()">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
           <label>Course Code:</label>
-          <input type="text" ng-model="editedCourse.courseCode" required /><br>
-          <label>Course Name:</label>
-          <input type="text" ng-model="editedCourse.courseName" required /><br>
-          <label>Description:</label>
-          <input type="textarea" ng-model="editedCourse.description" /><br>
-          <button type="submit">Save Changes</button>
-        </form>
-      </div>
-    </div>
+          </div>
+                        <div class="col-6">
 
-    <div id="createCourseModal" class="modal" ng-show="showCourseCreateModal">
-      <div class="modal-content">
-        <span class="close" ng-click="closeCourseCreateModal()">&times;</span>
-        <h2>Create Course</h2>
-        <form ng-submit="addCourse()">
-          <label>Course Code:</label>
-          <input type="text" ng-model="newCourse.courseCode" required /><br>
+          <input type="text" ng-model="editedCourse.courseCode" required /><br>
+          </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-6">
           <label>Course Name:</label>
-          <input type="text" ng-model="newCourse.courseName" required /><br>
+          </div>
+          <div class="col-6">
+          <input type="text" ng-model="editedCourse.courseName" required /><br>
+          </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-6">
           <label>Description:</label>
-          <input type="textarea" ng-model="newCourse.description" /><br>
-          <button type="submit">Create</button>
+          </div>
+          <div class="col-6">
+          <input type="textarea" ng-model="editedCourse.description" /><br>
+          </div>
+          </div>
+          <hr>
+          
+          
+          <button style="float: right; padding: 7px 25px;"  class="addbtn" type="submit">Save</button>
+      
+          </div>
         </form>
       </div>
     </div>
+</div>
+    <div id="createCourseModal" class="inmodal" ng-show="showCourseCreateModal">
+      <div class="inmodal-content">
+              <div class="inmodalhead">
+                <h2>Create Course</h2>
+                <div class="close">
+                <i class="fa-solid fa-xmark fa-xl" ng-click="closeCourseCreateModal()"></i>
+                </div>
+              </div>
+        <hr>
+        <form ng-submit="addCourse()">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+                <label>Course Code:</label>
+              </div>
+              <div class="col-6">
+                  <input placeholder="Course Code" type="text" ng-model="newCourse.courseCode" required /><br>
+              </div>
+            </div>
+            <br>
+          <div class="row">
+            <div class="col-6">
+              <label>Course Name:</label></div>
+              <div class="col-6">
+              <input placeholder="Course Name" type="text" ng-model="newCourse.courseName" required /><br></div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-6">
+              <label>Description:</label></div>
+              <div class="col-6">
+              <input placeholder="Description" type="textarea"  ng-model="newCourse.description" /><br></div>
+          </div>
+          
+          <hr>
+          
+            <button style="float: right; padding: 7px 25px;"  class="addbtn" type="submit">Create</button>
+           
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+    <div id="delCourseModal" class="inmodal" ng-show="CourseRemoveModal">
+      <div class="inmodal-content">
+        <div class="inmodalhead">
+       
+          <h2>Delete Course</h2>
+          <div class="close">
+              <i class="fa-solid fa-xmark fa-xl"  ng-click="closeCourseRemoveModal()"></i>
+            </div>
+          </div>
+
+          <hr>
+          <p>Are you sure you want to delete selected Course?</p>
+          <hr>
+          <!-- <button class="addbtn" ng-click="closeCourseRemoveModal()"> Cancel</button>
+          <button class="addbtn" ng-click="deleteCourseConfirm()">Delete</button> -->
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <button style="float: right; padding: 7px 25px; " class="addbtn" ng-click="deleteCourseConfirm()">Delete</button>
+          <button style="float: right; padding: 7px 25px; margin-right: 10px;" class="cancelbtn" ng-click="closeCourseRemoveModal()"> Cancel</button>
+              </div>
+          
+          </div>
+          </div>
+
+
+      </div>
+      </div>
+
+
   </div>
+</div>
+</div>
 </div>

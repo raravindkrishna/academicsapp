@@ -24,17 +24,56 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://kit.fontawesome.com/368551ae57.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <nav>
-      <ul>
-        <li><a href="#!home">Home</a></li>
-        <li><a href="#!course">Manage Courses</a></li>
-        <li><a href="#!student">Manage Students</a></li>
-        <li><a href="#!faculty">Manage Faculties</a></li>
-      </ul>
+      <h1>ACADEMICS APPLICATION</h1>
     </nav>
+    <div class="container-fluid overflow-hidden;">
+      <div class="row">
+        <div class="col-1 sidebar">
+          <ul>
+            <hr />
+            <li>
+              <i class="fa-solid fa-house fa-2xl" style="color: #000000"></i
+              ><br /><a href="#!home">Home</a>
+            </li>
+            <hr />
+            <br />
+            <li>
+              <i class="fa-solid fa-book fa-2xl" style="color: #000000"></i
+              ><br /><a href="#!course">Manage Courses </a>
+            </li>
+            <hr />
+            <br />
+            <li>
+              <i class="fa-solid fa-user fa-2xl" style="color: #000000"></i
+              ><br /><a href="#!student">Manage Students</a>
+            </li>
+            <hr />
+            <br />
+            <li>
+              <i
+                class="fa-solid fa-graduation-cap fa-2xl"
+                style="color: #000000"
+              ></i
+              ><br /><a href="#!faculty">Manage Faculties</a>
+            </li>
+            <hr />
+            <br />
+          </ul>
+        </div>
 
-    <main ng-view></main>
+        <main
+          style="padding-left: 25px; padding-right: 25px"
+          class="col-11"
+          ng-view
+        ></main>
+      </div>
+    </div>
   </body>
 </html>

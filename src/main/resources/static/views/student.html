@@ -1,68 +1,177 @@
-<div ng-controller="StudentController">
-  <h2>Students</h2>
+<div class="outer-box">
   <br />
-  <div>
-    <label
-      ><input
-        type="checkbox"
-        ng-model="selectAll"
-        ng-change="toggleSelectAll()"
-      />
-      Select All</label
-    >
+  <div class="container">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <h2 style="padding-top: 10px">Students</h2>
+        </div>
+          <div class="col-6">
+            <!-- <select ng-model="selectedAction" ng-change="performAction()">
+          <option value="">Select Action</option>
+          <option value="delete">Delete Selected</option>
+          <option value="edit">Edit Student</option>
+          <option value="create">Create Student</option>
+        </select> -->
+            <span style="padding-top: 12px;float: right;"><button style="padding: 8px 20px;" class="addbtn" ng-click="deleteSelectedStudents()">Delete </button></span>
+  <span style="padding-top: 12px; float: right;margin-right: 10px;"><button style="padding: 8px 20px;" class="addbtn" ng-click="editStudent()">Edit</button></span>
+  <span  style="padding-top: 12px;float: right;margin-right: 10px;"><button style="padding: 8px 20px;" class="addbtn" ng-click="createStudent()">Add</button></span>
 
-    <select ng-model="selectedAction" ng-change="performAction()">
-      <option value="">Select Action</option>
-      <option value="delete">Delete Selected</option>
-      <option value="edit">Edit Student</option>
-      <option value="create">Create Student</option>
-    </select>
-    <br /><br />
-  </div>
-  <table>
-    <tr>
-      <th>Select</th>
-      <th>Roll No.</th>
-      <th>Student Name</th>
-    </tr>
-    <tr class="items" ng-repeat="student in students">
-      <td><input type="checkbox" ng-model="student.selected" /></td>
-      <td>{{ student.rollNo }}</td>
-      <td>{{ student.studentName }}</td>
-    </tr>
-  </table>
 
-  <div id="editStudentModal" class="modal" ng-show="showStudentEditModal">
-    <div class="modal-content">
-      <span class="close" ng-click="closeStudentEditModal()">&times;</span>
-      <h2>Edit Student</h2>
-      <form ng-submit="updateStudent()">
-        <label>Roll No.:</label>
-        <input type="text" ng-model="editedStudent.rollNo" required /><br />
-        <label>Student Name:</label>
+
+<span style="float: right; margin-right: 10px; height: 39px;" class="search-bar" >
+        <i
+          class="fa-solid fa-magnifying-glass fa-lg"
+          style="color: #a7a8aa; margin-left: 10px"
+        ></i>
+
         <input
+          placeholder="Search"
           type="text"
-          ng-model="editedStudent.studentName"
-          required
-        /><br />
-
-        <button type="submit">Save Changes</button>
-      </form>
+          ng-model="search"
+          class="search-input"
+          style="border: none; outline: none"
+        />
+</span>
+          </div>
+          </div>
     </div>
+    <br />
+          <div class="container">
+          <table>
+            <tr>
+              <th><input
+                type="checkbox"
+                title="Select All"
+                ng-model="selectAll"
+                ng-change="toggleSelectAll()"
+              /></th>
+              <th>Roll No.</th>
+              <th>Student Name</th>
+            </tr>
+            <tr class="items" ng-repeat="student in students | filter: search">
+              <td><input type="checkbox" ng-model="student.selected" /></td>
+              <td>{{ student.rollNo }}</td>
+              <td>{{ student.studentName }}</td>
+            </tr>
+          </table>
+</div>
+          <div
+            id="editStudentModal"
+            class="inmodal"
+            ng-show="showStudentEditModal"
+          >
+            <div class="inmodal-content">
+                <div class="inmodalhead">
+              <h2>Edit Student</h2>
+              <div class="close">
+          <i class="fa-solid fa-xmark fa-xl" ng-click="closeStudentEditModal()"></i>
+          </div>
+              </div>
+              <hr>
+              <form ng-submit="updateStudent()">
+                 <div class="container">
+            <div class="row">
+              <div class="col-6">
+                <label>Roll No.:</label></div>
+                <div class="col-6">
+                <input
+                  type="text"
+                  ng-model="editedStudent.rollNo"
+                  required
+                /></div>
+                </div><br />
+                <div class="row">
+                  <div class="col-6">
+                <label>Student Name:</label>
+                </div>
+                <div class="col-6">
+                <input
+                  type="text"
+                  ng-model="editedStudent.studentName"
+                  required
+                /></div>
+</div><hr>
+                <button style="float: right; padding: 7px 25px;"  class="addbtn" type="submit">Save</button>
+              </form>
+            </div>
+          </div>
   </div>
+          <div
+            id="createStudentModal"
+            class="inmodal"
+            ng-show="showStudentCreateModal"
+          >
+            <div class="inmodal-content">
+              <div class="inmodalhead">
+              
+              <h2>Create Student</h2>
+                <div class="close">
+          <i class="fa-solid fa-xmark fa-xl" ng-click="closeStudentCreateModal()"></i>
+          </div>
+              </div>
+              <hr>
+              <form ng-submit="addStudent()">
+                <div class="container">
+            <div class="row">
+              <div class="col-6">
+                <label>Roll No.:</label>
+                </div>
+                <div class="col-6">
+                <input
+                placeholder="Roll No."
+                  type="text"
+                  ng-model="newStudent.rollNo"
+                  required
+                /></div></div><br />
+                <div class="row">
+                  <div class="col-6">
+                <label>Student Name:</label></div>
+                <div class="col-6">
+                <input
+                placeholder="Student Name"
+                  type="text"
+                  ng-model="newStudent.studentName"
+                  required
+                /></div></div> <hr>
 
-  <div id="createStudentModal" class="modal" ng-show="showStudentCreateModal">
-    <div class="modal-content">
-      <span class="close" ng-click="closeStudentCreateModal()">&times;</span>
-      <h2>Create Student</h2>
-      <form ng-submit="addStudent()">
-        <label>Roll No.:</label>
-        <input type="text" ng-model="newStudent.rollNo" required /><br />
-        <label>Student Name:</label>
-        <input type="text" ng-model="newStudent.studentName" required /><br />
+                <button style="float: right; padding: 7px 25px;"  class="addbtn" type="submit">Create</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <br />
 
-        <button type="submit">Create</button>
-      </form>
+          <div id="delStudentModal" class="inmodal" ng-show="StudentRemoveModal">
+      <div class="inmodal-content">
+        <div class="inmodalhead">
+       
+          <h2>Delete Student</h2>
+          <div class="close">
+              <i class="fa-solid fa-xmark fa-xl"  ng-click="closeStudentRemoveModal()"></i>
+            </div>
+          </div>
+
+          <hr>
+          <p>Are you sure you want to delete selected Student?</p>
+          <br>
+          <!-- <button class="addbtn" ng-click="closeStudentRemoveModal()"> Cancel</button>
+          <button class="addbtn" ng-click="deleteStudentConfirm()">Delete</button> -->
+
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <button style="float: right; padding: 7px 25px; " class="addbtn" ng-click="deleteStudentConfirm()">Delete</button>
+          <button style="float: right; padding: 7px 25px; margin-right: 10px;" class="cancelbtn" ng-click="closeStudentRemoveModal()"> Cancel</button>
+              </div>
+          
+          </div>
+          </div>
+          
+      </div>
+      </div>
+
+      </div>
     </div>
   </div>
 </div>

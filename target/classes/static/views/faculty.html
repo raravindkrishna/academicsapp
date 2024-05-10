@@ -1,63 +1,162 @@
-<div ng-controller="FacultyController">
-  <h2>Faculties</h2>
+<div class="outer-box">
   <br />
-  <div>
-    <label
-      ><input
-        type="checkbox"
-        ng-model="selectAll"
-        ng-change="toggleSelectAll()"
-      />
-      Select All</label
-    >
+  <div class="container">
+    <div class="container">
+      <div class="row">
+         <div class="col-6">
+      <h2 style="padding-top: 10px">Faculties</h2>
+     </div>
+     <div class="col-6">
+      
+  <span style="padding-top: 12px;float: right;"><button style="padding: 8px 20px;" class="addbtn" ng-click="deleteSelectedFaculties()">Delete </button></span>
+  <span style="padding-top: 12px; float: right;margin-right: 10px;"><button style="padding: 8px 20px;" class="addbtn" ng-click="editFaculty()">Edit</button></span>
+  <span  style="padding-top: 12px;float: right;margin-right: 10px;"><button style="padding: 8px 20px;" class="addbtn" ng-click="createFaculty()">Add</button></span>
 
-    <select ng-model="selectedAction" ng-change="performAction()">
-      <option value="">Select Action</option>
-      <option value="delete">Delete Selected</option>
-      <option value="edit">Edit Faculty</option>
-      <option value="create">Create Faculty</option>
-    </select>
-    <br /><br />
-  </div>
-  <table>
-    <tr>
-      <th>Select</th>
 
-      <th>Faculty Name</th>
-    </tr>
-    <tr class="items" ng-repeat="faculty in faculties">
-      <td><input type="checkbox" ng-model="faculty.selected" /></td>
 
-      <td>{{ faculty.facultyName }}</td>
-    </tr>
-  </table>
+<span style="float: right; margin-right: 10px; height: 39px;" class="search-bar" >
+        <i
+          class="fa-solid fa-magnifying-glass fa-lg"
+          style="color: #a7a8aa; margin-left: 10px"
+        ></i>
 
-  <div id="editFacultyModal" class="modal" ng-show="showFacultyEditModal">
-    <div class="modal-content">
-      <span class="close" ng-click="closeFacultyEditModal()">&times;</span>
-      <h2>Edit Faculty</h2>
-      <form ng-submit="updateFaculty()">
-        <label>Faculty Name:</label>
         <input
+          placeholder="Search"
           type="text"
-          ng-model="editedFaculty.facultyName"
-          required
-        /><br />
+          ng-model="search"
+          class="search-input"
+          style="border: none; outline: none"
+        />
+</span>
+     </div>
+      <div>
+           
+<!-- 
+        <select ng-model="selectedAction" ng-change="performAction()">
+          <option value="">Select Action</option>
+          <option value="delete">Delete Selected</option>
+          <option value="edit">Edit Faculty</option>
+          <option value="create">Create Faculty</option>
+        </select> -->
+      
+      </div>
+      <br>
+<div class="container">
+      <table>
+        <tr>
+          <th><input
+            type="checkbox"
+            title="Select All"
+            ng-model="selectAll"
+            ng-change="toggleSelectAll()"
+          /></th>
 
-        <button type="submit">Save Changes</button>
-      </form>
-    </div>
-  </div>
+          <th>Faculty Name</th>
+        </tr>
+        <tr class="items" ng-repeat="faculty in faculties | filter: search">
+          <td><input type="checkbox" ng-model="faculty.selected" /></td>
 
-  <div id="createFacultyModal" class="modal" ng-show="showFacultyCreateModal">
-    <div class="modal-content">
-      <span class="close" ng-click="closeFacultyCreateModal()">&times;</span>
-      <h2>Create Faculty</h2>
-      <form ng-submit="addFaculty()">
-        <label>Faculty Name:</label>
-        <input type="text" ng-model="newFaculty.facultyName" required /><br />
-        <button type="submit">Create</button>
-      </form>
+          <td>{{ faculty.facultyName }}</td>
+        </tr>
+      </table>
+</div>
+      <div id="editFacultyModal" class="inmodal" ng-show="showFacultyEditModal">
+        <div class="inmodal-content">
+            <div class="inmodalhead">
+               <h2>Edit Faculty</h2>
+        
+         <div class="close">
+                <i class="fa-solid fa-xmark fa-xl" ng-click="closeFacultyEditModal()"></i>
+                </div>
+          </div>
+          <hr>
+          <form ng-submit="updateFaculty()">
+            <div class="container">
+            <div class="row">
+              <div class="col-6">
+            <label>Faculty Name:</label>
+            </div>
+            <div class="col-6">
+            <input
+              type="text"
+              ng-model="editedFaculty.facultyName"
+              required
+            /></div>
+              </div><hr>
+            <button style="float: right; padding: 7px 25px;"  class="addbtn" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div
+        id="createFacultyModal"
+        class="inmodal"
+        ng-show="showFacultyCreateModal"
+      >
+        <div class="inmodal-content">
+           <div class="inmodalhead">
+         
+          <h2>Create Faculty</h2>
+          <div class="close">
+                <i class="fa-solid fa-xmark fa-xl" ng-click="closeFacultyCreateModal()"></i>
+                </div>
+          </div>
+          <hr>
+          <form ng-submit="addFaculty()">
+            <div class="container">
+            <div class="row">
+              <div class="col-6">
+            <label>Faculty Name:</label>
+            </div>
+            <div class="col-6">
+            <input
+            placeholder="Faculty Name"
+              type="text"
+              ng-model="newFaculty.facultyName"
+              required
+            /></div>
+            </div>
+          <hr>
+            <button style="float: right; padding: 7px 25px;"  class="addbtn" type="submit">Create</button>
+          </form>
+        </div>
+      </div>
     </div>
+    
+    <div id="delFacultyModal" class="inmodal" ng-show="FacultyRemoveModal">
+      <div class="inmodal-content">
+        <div class="inmodalhead">
+       
+          <h2>Delete Faculty</h2>
+          <div class="close">
+              <i class="fa-solid fa-xmark fa-xl"  ng-click="closeFacultyRemoveModal()"></i>
+            </div>
+          </div>
+
+          <hr>
+          <p>Are you sure you want to delete selected Faculties?</p>
+          <br>
+          <!-- <button class="addbtn" ng-click="closeFacultyRemoveModal()"> Cancel</button>
+          <button class="addbtn" ng-click="deleteFacultyConfirm()">Delete</button> -->
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <button style="float: right; padding: 7px 25px; " class="addbtn" ng-click="deleteFacultyConfirm()">Delete</button>
+          <button style="float: right; padding: 7px 25px; margin-right: 10px;" class="cancelbtn" ng-click="closeFacultyRemoveModal()"> Cancel</button>
+              </div>
+          
+          </div>
+          </div>
+          
+
+      </div>
+      </div>
+
+
   </div>
+     <br>
+</div>
+</div>
 </div>
