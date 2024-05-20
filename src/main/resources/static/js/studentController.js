@@ -1,18 +1,6 @@
 app.controller("StudentController", function ($scope, $http, $window) {
   $scope.selectedAction = "";
 
-  // $scope.performAction = function () {
-  //   if ($scope.selectedAction === "delete") {
-  //     $scope.deleteSelectedStudents();
-  //   } else if ($scope.selectedAction === "edit") {
-  //     $scope.editStudent();
-  //   } else if ($scope.selectedAction === "create") {
-  //     $scope.createStudent();
-  //   }
-
-  //   $scope.selectedAction = "";
-  // };
-
   $scope.fetchStudents = function () {
     $http
       .get("http://localhost:8080/api/student")
@@ -46,25 +34,6 @@ app.controller("StudentController", function ($scope, $http, $window) {
       alert("Please select at least one student to delete.");
       return;
     }
-    // var confirmation = $window.confirm(
-    //   "Are you sure you want to delete selected students?"
-    // );
-    // if (confirmation) {
-    //   $http({
-    //     method: "DELETE",
-    //     url: "http://localhost:8080/api/student",
-    //     params: { id: selectedStudentIds },
-    //   })
-    //     .then(function (response) {
-    //       $scope.fetchStudents();
-
-    //       $scope.selectAll = false;
-    //     })
-    //     .catch(function (error) {
-    //       alert("Cannot delete students mapped with classGroup Students");
-    //       console.error("Error deleting students:", error);
-    //     });
-    // }
 
     $scope.StudentRemoveModal = true;
     $scope.selectedStudentIds = selectedStudentIds;

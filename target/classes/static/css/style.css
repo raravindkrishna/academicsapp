@@ -7,11 +7,13 @@ body {
 }
 main {
   padding-top: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 h1 {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 27px;
-  /* color: rgb(224, 222, 222); */
+
   color: white;
   font-weight: bold;
   letter-spacing: 1px;
@@ -82,40 +84,7 @@ td {
 tr {
   border: 1px solid #000;
 }
-/* 
-nav {
-  background-color: red;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  text-align: center;
-} */
 
-/* nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-nav ul li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 18px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-} 
-
-nav ul li a:hover {
-  background-color: white;
-  color: red;
-}
-*/
 input[type="text"].ng-pristine {
   border: 1px solid #ccc;
 }
@@ -128,12 +97,6 @@ input[type="text"].ng-touched.ng-invalid {
   border: 1px solid #ff0000;
 }
 
-/* button {
-  background-color: green;
-  color: white;
-  border: none;
-  cursor: pointer;
-} */
 .redmsg {
   color: red;
 }
@@ -226,20 +189,6 @@ label {
   margin-top: 5px;
   font-weight: bold;
 }
-/* 
-button[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-  background-color: #45a049;
-} */
 
 .outer-box {
   background-color: #f4f4f4;
@@ -264,12 +213,12 @@ button[type="submit"]:hover {
   font-size: 13px;
   text-align: center;
   font-weight: bold;
-  margin-bottom: 10px; /* Adjust spacing between list items */
+  margin-bottom: 10px;
 }
 
 .sidebar ul li a {
   text-decoration: none;
-  color: #333; /* Link color */
+  color: #333;
 }
 
 .sidebar ul li a:hover {
@@ -323,4 +272,92 @@ p {
   cursor: pointer;
   font-weight: bold;
   font-size: 13px;
+}
+
+.home-row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.subhdng {
+  padding-top: 10px;
+}
+
+.home-onediv {
+  padding: 0px;
+}
+
+.home-onespan {
+  float: right;
+}
+.home-searchspan {
+  float: right;
+
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+.addcgbtn {
+  padding: 8px 35px;
+  margin-top: 5px;
+  margin-right: 17px;
+}
+
+.homecrt {
+  float: right;
+  padding: 7px 25px;
+}
+
+.homecrtmarg {
+  float: right;
+  padding: 7px 25px;
+  margin-right: 10px;
+}
+
+.searchi {
+  color: #a7a8aa;
+  margin-left: 10px;
+}
+
+.editi {
+  color: red;
+  cursor: pointer;
+}
+
+.searchcrctn {
+  float: right;
+  margin-right: 10px;
+  height: 39px;
+}
+.btncrctn {
+  padding: 8px 20px;
+}
+
+.btnalignone {
+  padding-top: 12px;
+  float: right;
+  margin-right: 10px;
+}
+.btnaligntwo {
+  padding-top: 12px;
+  float: right;
+}
+
+.divincgs {
+  padding-right: 0px;
+}
+
+.stdntsdiv {
+  padding: 0px;
+}
+
+.btnaligncgs {
+  padding-top: 13px;
+  float: right;
+}
+
+.btnaligncgstwo {
+  padding-top: 13px;
+  float: right;
+  margin-right: 10px;
 }

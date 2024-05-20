@@ -3,21 +3,21 @@
   <div class="container">
     <div class="container">
       <div class="row">
-         <div class="col-6">
-      <h2 style="padding-top: 10px">Faculties</h2>
+         <div class="col-6 subhdng">
+      <h2 >Faculties</h2>
      </div>
      <div class="col-6">
       
-  <span style="padding-top: 12px;float: right;"><button style="padding: 8px 20px;" class="addbtn" ng-click="deleteSelectedFaculties()">Delete </button></span>
-  <span style="padding-top: 12px; float: right;margin-right: 10px;"><button style="padding: 8px 20px;" class="addbtn" ng-click="editFaculty()">Edit</button></span>
-  <span  style="padding-top: 12px;float: right;margin-right: 10px;"><button style="padding: 8px 20px;" class="addbtn" ng-click="createFaculty()">Add</button></span>
+  <span class="btnaligntwo"><button  class="addbtn btncrctn" ng-click="deleteSelectedFaculties()">Delete </button></span>
+  <span class="btnalignone"><button  class="addbtn btncrctn" ng-click="editFaculty()">Edit</button></span>
+  <span class="btnalignone"><button  class="addbtn btncrctn" ng-click="createFaculty()">Add</button></span>
 
 
 
-<span style="float: right; margin-right: 10px; height: 39px;" class="search-bar" >
+<span  class="search-bar searchcrctn" >
         <i
-          class="fa-solid fa-magnifying-glass fa-lg"
-          style="color: #a7a8aa; margin-left: 10px"
+          class="fa-solid fa-magnifying-glass fa-lg searchi"
+         
         ></i>
 
         <input
@@ -30,14 +30,6 @@
 </span>
      </div>
       <div>
-           
-<!-- 
-        <select ng-model="selectedAction" ng-change="performAction()">
-          <option value="">Select Action</option>
-          <option value="delete">Delete Selected</option>
-          <option value="edit">Edit Faculty</option>
-          <option value="create">Create Faculty</option>
-        </select> -->
       
       </div>
       <br>
@@ -83,7 +75,7 @@
               required
             /></div>
               </div><hr>
-            <button style="float: right; padding: 7px 25px;"  class="addbtn" type="submit">Save</button>
+            <button  class="addbtn homecrt" type="submit">Save</button>
             </div>
           </form>
         </div>
@@ -118,7 +110,7 @@
             /></div>
             </div>
           <hr>
-            <button style="float: right; padding: 7px 25px;"  class="addbtn" type="submit">Create</button>
+            <button  class="addbtn homecrt" type="submit">Create</button>
           </form>
         </div>
       </div>
@@ -137,14 +129,13 @@
           <hr>
           <p>Are you sure you want to delete selected Faculties?</p>
           <br>
-          <!-- <button class="addbtn" ng-click="closeFacultyRemoveModal()"> Cancel</button>
-          <button class="addbtn" ng-click="deleteFacultyConfirm()">Delete</button> -->
+  
           
           <div class="container">
             <div class="row">
               <div class="col-12">
-                <button style="float: right; padding: 7px 25px; " class="addbtn" ng-click="deleteFacultyConfirm()">Delete</button>
-          <button style="float: right; padding: 7px 25px; margin-right: 10px;" class="cancelbtn" ng-click="closeFacultyRemoveModal()"> Cancel</button>
+                <button  class="addbtn homecrt" ng-click="deleteFacultyConfirm()">Delete</button>
+          <button class="cancelbtn homecrtmarg" ng-click="closeFacultyRemoveModal()"> Cancel</button>
               </div>
           
           </div>

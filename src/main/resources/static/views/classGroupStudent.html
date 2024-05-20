@@ -3,7 +3,7 @@
       <br />
     <div  class="container ">
       <div class="row">
-        <div style="padding-top: 10px" class="col-11"><h2>Class Group</h2></div>
+        <div  class="col-11 subhdng"><h2>Class Group</h2></div>
         
           <button class="addbtn col-1" ng-click="deleteCg()">Delete</button>
       </div>
@@ -15,8 +15,8 @@
             <p>
               <b>ClassGroup Name:</b> {{classGroup.classGroupName}}
               <i
-                class="fa-regular fa-pen-to-square fa-lg"
-                style="color: red; cursor: pointer"
+                class="fa-regular fa-pen-to-square fa-lg editi"
+               
                 ng-click="changeCgName()"
               ></i>
             </p>
@@ -24,8 +24,8 @@
           <div>
             <b>Faculty:</b> {{classGroup.faculty.facultyName}}
             <i
-              class="fa-regular fa-pen-to-square fa-lg"
-              style="color: red; cursor: pointer"
+              class="fa-regular fa-pen-to-square fa-lg editi"
+             
               ng-click="changeFaculty()"
             ></i>
           </div>
@@ -37,19 +37,19 @@
       <hr />
             <div class="container">
               <div class="row">
-                <div style="padding-top: 10px;" class="col-4">  <h2>Students in the Class Group</h2></div>
-                <div style="padding: 0px;" class="col-8">
-                   <span  style="padding-top: 13px; float: right;"  >
-              <button style="padding: 8px 20px;" class="addbtn" ng-click="deleteSelectedStudents()">Remove Student</button>
+                <div class="col-4 subhdng">  <h2>Students in the Class Group</h2></div>
+                <div  class="col-8 stdntsdiv">
+                   <span  class="btnaligncgs"  >
+              <button class="addbtn btncrctn" ng-click="deleteSelectedStudents()">Remove Student</button>
             </span>
-                   <span  style="padding-top: 13px; float: right; margin-right: 10px; "  >
-              <button style="padding: 8px 20px;"  class="addbtn" ng-click="showStudentCreateModal()">Add Student</button>
+                   <span class="btnaligncgstwo"  >
+              <button  class="addbtn btncrctn" ng-click="showStudentCreateModal()">Add Student</button>
             </span>
                  
-          <span style="float: right; margin-right: 10px; " class="search-bar">
+          <span  class="search-bar searchcrctn">
               <i
-                class="fa-solid fa-magnifying-glass fa-lg"
-                style="color: #a7a8aa; margin-left: 10px"
+                class="fa-solid fa-magnifying-glass fa-lg searchi"
+      
               ></i>
 
               <input
@@ -59,16 +59,12 @@
                 class="search-input"
                 style="border: none; outline: none; "
               />
-          </span>
-            
-           
-            
-            
+          </span>    
             </div>
             </div>
       </div>
       <br />
-        <div class="container" style="padding-right: 0px;">
+        <div class="container divincgs" >
           <table>
             <tr>
               <th>  <input
@@ -115,7 +111,7 @@
           </div>
           
           <hr>
-          <button style="float: right; padding: 7px 25px;"  class="addbtn" type="submit">Save </button>
+          <button  class="addbtn homecrt" type="submit">Save </button>
          
           </div>
           </div>
@@ -152,7 +148,7 @@
        
         <hr>
 
-          <button style="float: right; padding: 7px 25px;" class="addbtn" type="submit">Save</button>
+          <button  class="addbtn homecrt" type="submit">Save</button>
  
           </div>
         </div>
@@ -185,20 +181,11 @@
           </div>
           </div>
          <hr>
-           <!-- <div class="row">
-            <div class="col-2"></div>
-          <button class=" col-3 addbtn" type="submit">Add Student</button>
-          <div class="col-2"></div>
-          <button class=" col-3 addbtn" ng-click="closeStudentCreateModal()">Cancel</button>
-          <div  class="col-2"></div>
-          </div> -->
-
-
            <div class="container">
             <div class="row">
               <div class="col-12">
-                <button style="float: right; padding: 7px 25px; " class="addbtn" type="submit"  >Add</button>
-          <button style="float: right; padding: 7px 25px; margin-right: 10px;" class="cancelbtn" ng-click="closeStudentCreateModal()"> Cancel</button>
+                <button  class="addbtn homecrt" type="submit"  >Add</button>
+          <button class="cancelbtn homecrtmarg" ng-click="closeStudentCreateModal()"> Cancel</button>
               </div>
           
           </div>
@@ -223,8 +210,8 @@
           <div class="container">
             <div class="row">
               <div class="col-12">
-                <button style="float: right; padding: 7px 25px; " class="addbtn" ng-click="deleteConfirm()">Remove</button>
-          <button style="float: right; padding: 7px 25px; margin-right: 10px;" class="cancelbtn" ng-click="closeStudentRemoveModal()"> Cancel</button>
+                <button  class="addbtn homecrt" ng-click="deleteConfirm()">Remove</button>
+          <button class="cancelbtn homecrtmarg" ng-click="closeStudentRemoveModal()"> Cancel</button>
               </div>
           
           </div>
@@ -251,8 +238,8 @@
            <div class="container">
             <div class="row">
               <div class="col-12">
-                <button style="float: right; padding: 7px 25px; " class="addbtn" ng-click="deleteCgConfirm()">Delete</button>
-          <button style="float: right; padding: 7px 25px; margin-right: 10px;" class="cancelbtn" ng-click="closeCgRemoveModal()"> Cancel</button>
+                <button  class="addbtn homecrt" ng-click="deleteCgConfirm()">Delete</button>
+          <button  class="cancelbtn homecrtmarg" ng-click="closeCgRemoveModal()"> Cancel</button>
               </div>
           
           </div>

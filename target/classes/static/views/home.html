@@ -1,33 +1,27 @@
 <div class="outer-box">
   <br />
   <div class="container">
-    <div class="row" style="margin-left: 0px; margin-right: 0px">
-      <div style="padding-top: 10px" class="col-7">
+    <div class="row home-row" >
+      <div  class="col-7 subhdng">
         <h2>Class Groups</h2>
       </div>
-      <div style="padding: 0px" class="col-5">
-        <span style="float: right">
+      <div  class="col-5 home-onediv">
+        <span class="home-onespan">
           <button
-            style="padding: 8px 35px; margin-top: 5px; margin-right: 17px;"
-            class="addbtn"
-            class="addbtn"
+    
+            class="addbtn addcgbtn"
+        
             ng-click="addCg()"
           >
             Add
           </button>
         </span>
         <span
-          class="search-bar"
-          style="
-            float: right;
-
-            margin-top: 5px;
-            margin-right: 10px;
-          "
+          class="search-bar home-searchspan"     
         >
           <i
-            class="fa-solid fa-magnifying-glass fa-lg"
-            style="color: #a7a8aa; margin-left: 10px"
+            class="fa-solid fa-magnifying-glass fa-lg searchi"
+            
           ></i>
 
           <input
@@ -35,7 +29,7 @@
             type="text"
             ng-model="search"
             class="search-input"
-            style="border: none; outline: none"
+            style="border: none; outline: none;"
           />
         </span>
       </div>
@@ -116,12 +110,8 @@
           </div>
           <br />
           <hr>
-          <!-- <div class="row">
-            <div class="col-4"></div>
-            <button class="addbtn col-4" type="submit">Create</button>
-            <div class="col-4"></div>
-          </div> -->
-          <button style="float: right; padding: 7px 25px;" class="addbtn" type="submit">Create</button>
+        
+          <button  class="addbtn homecrt" type="submit">Create</button>
         </div>
       </form>
     </div>

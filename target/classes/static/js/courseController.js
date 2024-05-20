@@ -1,18 +1,4 @@
 app.controller("CourseController", function ($scope, $http, $window) {
-  // $scope.selectedAction = "";
-
-  // $scope.performAction = function () {
-  //   if ($scope.selectedAction === "delete") {
-  //     $scope.deleteSelectedCourses();
-  //   } else if ($scope.selectedAction === "edit") {
-  //     $scope.editCourse();
-  //   } else if ($scope.selectedAction === "create") {
-  //     $scope.createCourse();
-  //   }
-
-  //   $scope.selectedAction = "";
-  // };
-
   $scope.fetchCourses = function () {
     $http
       .get("http://localhost:8080/api/course")
@@ -25,7 +11,6 @@ app.controller("CourseController", function ($scope, $http, $window) {
   };
   $scope.fetchCourses();
 
-  // Toggle select all checkboxes
   $scope.toggleSelectAll = function () {
     angular.forEach($scope.courses, function (course) {
       course.selected = $scope.selectAll;
@@ -47,25 +32,6 @@ app.controller("CourseController", function ($scope, $http, $window) {
       alert("Please select at least one course to delete.");
       return;
     }
-    // var confirmation = $window.confirm(
-    //   "Are you sure you want to delete selected courses?"
-    // );
-    // if (confirmation) {
-    //   $http({
-    //     method: "DELETE",
-    //     url: "http://localhost:8080/api/course",
-    //     params: { id: selectedCourseIds },
-    //   })
-    //     .then(function (response) {
-    //       $scope.fetchCourses();
-
-    //       $scope.selectAll = false;
-    //     })
-    //     .catch(function (error) {
-    //       alert("Cannot delete courses mapped with classGroups");
-    //       console.error("Error deleting courses:", error);
-    //     });
-    // }
 
     $scope.CourseRemoveModal = true;
     $scope.selectedCourseIds = selectedCourseIds;
@@ -88,7 +54,7 @@ app.controller("CourseController", function ($scope, $http, $window) {
         console.error("Error deleting courses:", error);
       });
   };
-  // Edit Course
+
   $scope.editCourse = function () {
     var selectedCourses = $scope.courses.filter(function (course) {
       return course.selected;
@@ -101,7 +67,6 @@ app.controller("CourseController", function ($scope, $http, $window) {
     $scope.showCourseEditModal = true;
   };
 
-  // Update Course
   $scope.updateCourse = function () {
     if (!$scope.editedCourse.description) {
       $scope.editedCourse.description = "-";

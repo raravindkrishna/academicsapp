@@ -91,16 +91,6 @@ app.controller(
         });
     };
 
-    // $scope.performAction = function () {
-    //   if ($scope.selectedAction === "remove") {
-    //     $scope.deleteSelectedStudents();
-    //   } else if ($scope.selectedAction === "add") {
-    //     $scope.showStudentCreateModal();
-    //   }
-
-    //   $scope.selectedAction = "";
-    // };
-
     $scope.closeStudentCreateModal = function () {
       $scope.addStudentCreateModal = false;
     };
@@ -189,30 +179,9 @@ app.controller(
         alert("Please select at least one student to delete.");
         return;
       }
-      // var confirmation = $window.confirm(
-      //   "Are you sure you want to remove selected Students from class group?"
-      // );
+
       $scope.StudentRemoveModal = true;
       $scope.selectedStudentIds = selectedjoinStudentIds;
-
-      // if (confirmation) {
-      //   $http({
-      //     method: "DELETE",
-      //     url:
-      //       "http://localhost:8080/api/classGroup/" +
-      //       classGroupId +
-      //       "/students",
-      //     params: { id: selectedjoinStudentIds },
-      //   })
-      //     .then(function (response) {
-      //       $scope.getStudents();
-
-      //       $scope.selectAll = false;
-      //     })
-      //     .catch(function (error) {
-      //       console.error("Error deleting Students:", error);
-      //     });
-      // }
     };
 
     $scope.deleteConfirm = function () {
